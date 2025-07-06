@@ -1,42 +1,61 @@
 # SkillSwap
 
-SkillSwap is a platform where users can exchange knowledge and skills with each other.  
-For example, someone might offer violin lessons in exchange for help with web development.
+SkillSwap is a full-stack platform where users can **exchange knowledge and skills**.  
+For example, someone might offer violin lessons in return for help with web development.
 
-## Features
+This app enables users to post skill offerings or requests, connect through real-time chat, and manage their profiles.
 
-- User authentication (sign up, log in)
-- Post feed for skill exchange
-- Real-time 1-on-1 messaging
-- View other users' profiles
-- Update your own profile (bio, profile picture, password, skills)
-- Create and delete your own posts
-- Ratings and reviews between users
+---
 
-## Tech Stack
+## 🧪 Test Login
 
-- React
-- Tailwind CSS
-- Supabase
-- Vite
-- Context API
-- React Query
+Use the following credentials to explore the app:
 
-## Current Status
+- **Email:** example@example.com
+- **Password:** example000
 
-- The core functionality is mostly complete and working.
-- Styling and design are still a work in progress and may not be polished.
-- Error handling needs improvement; alerts will be replaced with better notifications (e.g., hot toast).
-- The ratings feature is planned but not yet implemented.
-- There is a minor issue with the websocket connection that needs fixing.
+---
 
-This project is actively being developed and improved.
+## ✨ Features
 
-## Getting Started
+- ✅ Full user authentication (sign up, log in, password update)
+- 📝 Create and delete skill exchange posts
+- 💬 Real-time 1-on-1 messaging with Supabase subscriptions
+- 🧑‍💻 View and message other users' profiles
+- ⚙️ Update your own profile: bio, skills offered, profile picture, and password
+- 🌟 Ratings and reviews between users (coming soon)
+
+---
+
+## 🛠 Tech Stack
+
+- **Frontend:** React, Vite, Tailwind CSS
+- **State Management:** Context API, React Query
+- **Backend as a Service:** Supabase (auth, database, real-time)
+- **Other Tools:** react-hook-form, react-hot-toast (planned), Git
+
+---
+
+## 🚧 Project Status
+
+This project is functional but still in development:
+
+- 🔧 **Styling** is in progress (UI/UX not final)
+- ⚠️ **Error handling** is basic — alerts will be replaced with `react-hot-toast`
+- 🌟 **Ratings** system is planned but not yet implemented
+- 🔌 Minor **websocket issue** still being debugged
+
+---
+
+## ⚙️ Getting Started
 
 To run the project locally:
 
+1. Clone this repository
+2. Create a project at [Supabase](https://supabase.com/)
+3. Create a `.env.local` file in the root directory with the following:
+
 ```bash
-npm install
-npm run dev
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_anon_key
 ```
