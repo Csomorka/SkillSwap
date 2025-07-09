@@ -16,7 +16,7 @@ function AppLayout() {
       <div className="relative h-screen lg:grid lg:grid-cols-[1.5fr_4fr] lg:grid-rows-[auto_1fr]">
         <Header toggleNav={toggleNav} />
         <SideBar />
-        <main className="overflow-x-scroll">
+        <main className="overflow-x-scroll bg-stone-100">
           <Outlet />
         </main>
       </div>

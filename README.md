@@ -7,15 +7,6 @@ This app enables users to post skill offerings or requests, connect through real
 
 ---
 
-## 🧪 Test Login
-
-Use the following credentials to explore the app:
-
-- **Email:** example@example.com
-- **Password:** example000
-
----
-
 ## ✨ Features
 
 - ✅ Full user authentication (sign up, log in, password update)
@@ -32,7 +23,7 @@ Use the following credentials to explore the app:
 - **Frontend:** React, Vite, Tailwind CSS
 - **State Management:** Context API, React Query
 - **Backend as a Service:** Supabase (auth, database, real-time)
-- **Other Tools:** react-hook-form, react-hot-toast (planned), Git
+- **Other Tools:** react-hot-toast (planned), Git
 
 ---
 
@@ -43,7 +34,6 @@ This project is functional but still in development:
 - 🔧 **Styling** is in progress (UI/UX not final)
 - ⚠️ **Error handling** is basic — alerts will be replaced with `react-hot-toast`
 - 🌟 **Ratings** system is planned but not yet implemented
-- 🔌 Minor **websocket issue** still being debugged
 
 ---
 

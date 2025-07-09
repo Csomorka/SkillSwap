@@ -6,7 +6,10 @@ export function stringToArray(str) {
 }
 
 export function formatDate(dateString) {
-  const date = new Date(dateString);
+  const safeDateString = dateString.endsWith("Z")
+    ? dateString
+    : dateString + "Z";
+  const date = new Date(safeDateString);
   const now = new Date();
   const diffMs = now - date;
   const diffSec = Math.floor(diffMs / 1000);

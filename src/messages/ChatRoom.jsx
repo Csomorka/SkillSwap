@@ -5,16 +5,20 @@ import supabase from "../services/supabase";
 import { sendMessage as apiSendMessage } from "../services/apiMessages";
 import BackButton from "../ui/BackButton";
 import { formatDate } from "../helpers";
+import { useGetProfile } from "../profiles/useGetProfile";
 
 export default function ChatRoom() {
   const { conversationId } = useParams();
   const { user: currentUser } = useAuth();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const [otherAvatarUrl, setOtherAvatarUrl] = useState(null);
+  const [otherFullName, setOtherFullName] = useState("");
   const messagesEndRef = useRef(null);
   const channelRef = useRef(null);
+  const { profile: currentProfile, isLoading: isLoadingProfile } =
+    useGetProfile(currentUser.id);
 
-  // Fetch messages from DB
   useEffect(() => {
     if (!conversationId) return;
 
@@ -30,6 +34,47 @@ export default function ChatRoom() {
 
     fetchMessages();
   }, [conversationId]);
+
+  useEffect(() => {
+    if (!conversationId || !currentUser) return;
+
+    const fetchOtherUser = async () => {
+      const { data: convoData, error } = await supabase
+        .from("conversations")
+        .select("user1_id, user2_id")
+        .eq("id", conversationId)
+        .single();
+
+      if (error) {
+        console.error("❌ Failed to fetch conversation:", error.message);
+        return;
+      }
+
+      const otherUserId =
+        convoData.user1_id === currentUser.id
+          ? convoData.user2_id
+          : convoData.user1_id;
+
+      const { data: otherUserProfile, error: profileError } = await supabase
+        .from("profiles")
+        .select("avatarUrl, fullName")
+        .eq("user_id", otherUserId)
+        .single();
+
+      if (profileError) {
+        console.error(
+          "❌ Failed to fetch other user profile:",
+          profileError.message,
+        );
+        return;
+      }
+
+      setOtherAvatarUrl(otherUserProfile?.avatarUrl);
+      setOtherFullName(otherUserProfile?.fullName || "Unknown");
+    };
+
+    fetchOtherUser();
+  }, [conversationId, currentUser]);
 
   // Setup broadcast realtime
   useEffect(() => {
@@ -111,11 +156,14 @@ export default function ChatRoom() {
         <h2 className="mb-4 text-2xl font-semibold">Chat Room</h2>
 
         <div className="flex-grow overflow-y-auto rounded-lg border border-gray-300 bg-gray-50 p-4">
-          {messages.length === 0 ? (
+          {messages.length === 0 || isLoadingProfile ? (
             <p className="text-center text-gray-500">No messages yet.</p>
           ) : (
             messages.map((msg, index) => {
               const isOwn = msg.sender_id === currentUser?.id;
+              const avatar = isOwn ? currentProfile?.avatarUrl : otherAvatarUrl;
+              const name = isOwn ? "Me" : otherFullName;
+
               return (
                 <div
                   key={index}
@@ -130,6 +178,17 @@ export default function ChatRoom() {
                         : "rounded-bl-none bg-white text-gray-900"
                     } shadow`}
                   >
+                    <div className="mb-1 flex items-center gap-2">
+                      <img
+                        src={avatar || "/default-avatar.png"}
+                        alt={`${name}'s avatar`}
+                        className="h-5 w-5 rounded-full object-cover"
+                      />
+                      <span className="text-xs font-medium text-gray-700">
+                        {name}
+                      </span>
+                    </div>
+
                     <p>{msg.content}</p>
                     <span className="mt-1 block text-right text-xs text-gray-500">
                       {formatDate(msg.timestamp)}
