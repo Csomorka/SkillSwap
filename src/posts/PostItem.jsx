@@ -3,7 +3,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { HiOutlineTrash } from "react-icons/hi2";
 import DeleteButton from "../ui/DeleteButton";
 
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDeletePost } from "./useDeletePost";
 
 import { useGetProfile } from "../profiles/useGetProfile";
@@ -11,6 +11,7 @@ import SkillItem from "../ui/SkillItem";
 
 function PostItem({ post }) {
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const {
     id: postId,
@@ -30,9 +31,11 @@ function PostItem({ post }) {
   return (
     <div className="rounded-xl border border-stone-200 bg-white p-6 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:border-amber-100 hover:shadow-lg">
       <div className="mb-4 flex items-start justify-between">
-        <NavLink
-          to={`/profile/${user_id}`}
-          className="group flex items-center gap-3"
+        <div
+          onClick={() => {
+            if (!isAuthor) navigate(`/profile/${user_id}`);
+          }}
+          className="group flex cursor-pointer items-center gap-3"
         >
           <img
             className="h-10 w-10 rounded-full object-cover object-top"
@@ -45,7 +48,7 @@ function PostItem({ post }) {
             </h5>
             <p className="text-xs text-stone-500">{formatDate(created_at)}</p>
           </div>
-        </NavLink>
+        </div>
 
         {isAuthor && (
           <DeleteButton
