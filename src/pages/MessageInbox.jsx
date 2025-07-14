@@ -55,34 +55,46 @@ function MessageInbox() {
     navigate(`/messages/${conversationId}`);
   };
 
+  const isConversation = conversations.length > 0;
+
   return (
     <div className="h-screen bg-stone-100 p-[4rem_4.8rem_6.4rem]">
-      <h2 className="mb-4 text-xl font-bold">Your Chats</h2>
-      <ul className="space-y-4">
-        {conversations.map((c) => {
-          const otherUserId = c.user1_id === user.id ? c.user2_id : c.user1_id;
-          const partner = partners[otherUserId];
+      {!isConversation ? (
+        <p className="text-xl text-stone-700">
+          There is no conversation yet...☹️ Start your first conversation by
+          messaging someone!
+        </p>
+      ) : (
+        <>
+          <h2 className="mb-4 text-xl font-bold">Your Chats</h2>
+          <ul className="space-y-4">
+            {conversations.map((c) => {
+              const otherUserId =
+                c.user1_id === user.id ? c.user2_id : c.user1_id;
+              const partner = partners[otherUserId];
 
-          return (
-            <li
-              key={c.id}
-              className="flex cursor-pointer items-center gap-4 rounded-lg bg-white p-4 shadow hover:bg-stone-100"
-              onClick={() => openChat(c.id)}
-            >
-              {partner?.avatarUrl ? (
-                <img
-                  src={partner.avatarUrl}
-                  alt={partner.fullName}
-                  className="h-10 w-10 rounded-full object-cover"
-                />
-              ) : (
-                <div className="h-10 w-10 rounded-full bg-stone-300" />
-              )}
-              <p>{partner?.fullName || "Unknown User"}</p>
-            </li>
-          );
-        })}
-      </ul>
+              return (
+                <li
+                  key={c.id}
+                  className="flex cursor-pointer items-center gap-4 rounded-lg bg-white p-4 shadow hover:bg-stone-100"
+                  onClick={() => openChat(c.id)}
+                >
+                  {partner?.avatarUrl ? (
+                    <img
+                      src={partner.avatarUrl}
+                      alt={partner.fullName}
+                      className="h-10 w-10 rounded-full object-cover"
+                    />
+                  ) : (
+                    <div className="h-10 w-10 rounded-full bg-stone-300" />
+                  )}
+                  <p>{partner?.fullName || "Unknown User"}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </>
+      )}
     </div>
   );
 }

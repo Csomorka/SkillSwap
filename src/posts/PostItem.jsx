@@ -76,41 +76,4 @@ function PostItem({ post }) {
   );
 }
 
-//   return (
-//     <div className="rounded-3xl border border-amber-400 bg-white p-4">
-//       <NavLink
-//         to={`/profile/${user_id}`}
-//         className="mb-2 flex items-center gap-3"
-//       >
-//         <img
-//           className="h-8 w-8 rounded-full"
-//           src={profile.avatarUrl}
-//           alt={`${profile.fullName}'s profile picture`}
-//         />
-//         <h5 className="font-semibold hover:text-amber-700">
-//           {profile.fullName}
-//         </h5>
-//         {isAuthor ? (
-//           <DeleteButton
-//             isDeletingPost={isDeletingPost}
-//             onDelete={() => deletePost(postId)}
-//           >
-//             <HiOutlineTrash />
-//           </DeleteButton>
-//         ) : null}
-//       </NavLink>
-//       <div className="flex flex-col gap-2">
-//         <h2 className="text-2xl font-bold">{title}</h2>
-//         <p className="text-xl text-stone-600">{description}</p>
-//         <div className="flex flex-wrap gap-2">
-//           {JSON.parse(skillsNeeded)?.map((skill) => (
-//             <SkillItem key={skill}>{skill}</SkillItem>
-//           ))}
-//         </div>
-//         <p className="text-sm text-stone-400">{formatDate(created_at)}</p>
-//       </div>
-//     </div>
-//   );
-// }
-
 export default PostItem;

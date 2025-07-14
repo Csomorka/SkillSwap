@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAccount } from "../services/apiAccount";
+
 import PostItem from "../posts/PostItem";
 import { getPosts } from "../services/apiPosts";
 import { useAuth } from "../contexts/AuthContext";
@@ -8,19 +8,22 @@ import Loader from "../ui/Loader";
 import { getOrCreateConversation } from "../services/apiMessages";
 import { useNavigate } from "react-router-dom";
 import SkillItem from "../ui/SkillItem";
+import { useGetProfile } from "./useGetProfile";
+import { getRatings } from "../services/apiRatings";
 
 function Profile({ userId }) {
   const { user: currentUser } = useAuth();
   const navigate = useNavigate();
 
+  const { profile, error, isLoading, isError } = useGetProfile(userId);
+
   const {
-    data: profile,
-    error,
-    isLoading,
-    isError,
+    data: ratings,
+    isLoadingRating,
+    isRatingError,
   } = useQuery({
-    queryKey: ["profile", userId],
-    queryFn: () => getAccount(userId),
+    queryKey: ["ratings"],
+    queryFn: () => getRatings(userId),
   });
 
   const {
@@ -32,12 +35,18 @@ function Profile({ userId }) {
     queryFn: getPosts,
   });
 
-  if (isLoading || isLoadingPost) return <Loader />;
-  if (isError || isPostError) return <p>Error: {error.message}</p>;
+  if (isLoading || isLoadingPost || isLoadingRating) return <Loader />;
+  if (isError || isPostError || isRatingError)
+    return <p>Error: {error.message}</p>;
   if (!profile || profile.length === 0) return <p>No profile found.</p>;
   if (!posts || posts.length === 0) return <p>No posts found.</p>;
 
   const usersPosts = posts.filter((post) => post.user_id === userId);
+
+  const averageRating =
+    ratings && ratings.length > 0
+      ? ratings.reduce((sum, r) => sum + r.rating, 0) / ratings.length
+      : null;
 
   const { fullName, bio, skillsOffered, avatarUrl } = profile;
 
@@ -120,49 +129,5 @@ function Profile({ userId }) {
       </div>
     </div>
   );
-
-  // return (
-  //   <>
-  //     <div className="flex flex-col items-center justify-center gap-2 lg:relative lg:flex lg:items-start lg:justify-between">
-  //       <img
-  //         className="[solid_1px] h-48 w-48 rounded-full border-[5px] border-amber-400 object-cover object-top md:h-52 md:w-52 lg:h-56 lg:w-56"
-  //         src={avatarUrl}
-  //       />
-  //       <h2 className="border-b-2 border-stone-400 p-2 text-2xl font-bold text-stone-700 md:text-3xl lg:absolute lg:bottom-8 lg:right-20">
-  //         {fullName}
-  //       </h2>
-  //     </div>
-  //     <div className="flex flex-col gap-4 p-4 md:grid md:h-96 md:grid-cols-2">
-  //       <div className="rounded-xl bg-stone-200 p-4">
-  //         <h3>Bio</h3>
-  //         <p>{bio}</p>
-  //       </div>
-  //       <div className="flex flex-col gap-4 md:grid md:grid-rows-3">
-  //         <div className="flex flex-col gap-2 rounded-xl bg-stone-200 p-4 md:row-span-1">
-  //           {usersPosts.map((post) => (
-  //             <PostItem post={post} key={post.id} />
-  //           ))}
-  //         </div>
-  //         <div className="rounded-xl bg-stone-200 p-4 md:row-span-2">
-  //           <h3 className="mb-2 text-lg font-semibold text-stone-700">
-  //             Offered skills
-  //           </h3>
-  //           <div className="flex flex-wrap gap-2">
-  //             {skillsOffered?.map((skill) => (
-  //               <SkillItem key={skill}>{skill}</SkillItem>
-  //             ))}
-  //           </div>
-  //         </div>
-  //       </div>
-  //       {userId !== currentUser.id ? (
-  //         <MessageButton
-  //           handleMessage={() => handleSendMessage(currentUser.id, userId)}
-  //         />
-  //       ) : (
-  //         ""
-  //       )}
-  //     </div>
-  //   </>
-  // );
 }
 export default Profile;

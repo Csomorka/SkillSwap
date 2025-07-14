@@ -4,6 +4,7 @@ import { getAccount, updateAccount } from "../services/apiAccount";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import supabase from "../services/supabase";
 import { stringToArray } from "../helpers";
+import toast from "react-hot-toast";
 
 function Settings() {
   const { user } = useAuth();
@@ -43,10 +44,10 @@ function Settings() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["profile", user.id]);
-      alert("Settings updated successfully!");
+      toast.success("Settings updated successfully!");
     },
     onError: (error) => {
-      alert("Error updating settings:" + error.message);
+      toast.error("Error updating settings:" + error.message);
     },
   });
 

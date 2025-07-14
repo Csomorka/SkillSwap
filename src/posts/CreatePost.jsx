@@ -6,6 +6,7 @@ import { stringToArray } from "../helpers";
 import { createPost as createPostApi } from "../services/apiPosts";
 import { HiOutlineX } from "react-icons/hi";
 import { HiOutlinePlusCircle } from "react-icons/hi2";
+import toast from "react-hot-toast";
 
 function CreatePost({ togglePostForm }) {
   const { user } = useAuth();
@@ -34,14 +35,14 @@ function CreatePost({ togglePostForm }) {
   const { mutate: createPost, isLoading: isCreating } = useMutation({
     mutationFn: createPostApi,
     onSuccess: () => {
-      alert("New post successfully created");
+      toast.success("New post successfully created");
       queryClient.invalidateQueries({
         queryKey: ["posts"],
       });
       resetPostForm();
       togglePostForm((prev) => !prev);
     },
-    onError: (error) => alert(error.message),
+    onError: (error) => toast.error(error.message),
   });
 
   useEffect(() => {
