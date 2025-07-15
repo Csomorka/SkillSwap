@@ -3,7 +3,7 @@ function Logo() {
     <div className="flex items-center justify-center">
       <img
         className="h-32 w-auto md:h-60"
-        src="../public/SkillSwapLogo.png"
+        src="/SkillSwapLogo.png"
         alt="logo"
       />
     </div>
