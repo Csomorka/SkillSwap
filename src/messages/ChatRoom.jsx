@@ -16,7 +16,7 @@ export default function ChatRoom() {
   const [newMessage, setNewMessage] = useState("");
   const [otherAvatarUrl, setOtherAvatarUrl] = useState(null);
   const [otherFullName, setOtherFullName] = useState("");
-  const [hasRated, setHasRated] = useState(false);
+  const [hasRated, setHasRated] = useState(null);
   const [showRatingModal, setShowRatingModal] = useState(false);
   const [ratingValue, setRatingValue] = useState(0);
   const [comment, setComment] = useState("");
@@ -87,6 +87,8 @@ export default function ChatRoom() {
 
       if (!ratingError && existingRating) {
         setHasRated(true);
+      } else {
+        setHasRated(false);
       }
     };
 
@@ -209,7 +211,7 @@ export default function ChatRoom() {
         <h2 className="mb-4 text-2xl font-semibold">
           Chat Room with {otherFullName}
         </h2>
-        {!hasRated && (
+        {hasRated === false && (
           <button
             onClick={() => setShowRatingModal(true)}
             className="mb-4 w-fit rounded bg-yellow-400 px-4 py-2 text-sm font-medium text-white hover:bg-yellow-500"
