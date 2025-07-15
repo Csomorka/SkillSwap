@@ -1,10 +1,4 @@
-import {
-  BrowserRouter,
-  Navigate,
-  replace,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AppLayout from "./ui/AppLayout";
 import Feed from "./pages/Feed";
 import Account from "./pages/Account";
@@ -33,7 +27,8 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
 
       <AuthProvider>
         <BrowserRouter>
