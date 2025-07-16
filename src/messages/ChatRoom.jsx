@@ -205,22 +205,22 @@ export default function ChatRoom() {
   }
 
   return (
-    <div className="relative h-screen bg-stone-100 p-[4rem_4.8rem_6.4rem]">
+    <div className="relative h-screen bg-stone-100 px-2 py-6 lg:p-16">
       <BackButton />
       <div className="flex h-screen w-full flex-col p-4">
-        <h2 className="mb-4 text-2xl font-semibold">
+        <h2 className="mb-3 text-xl font-semibold">
           Chat Room with {otherFullName}
         </h2>
         {hasRated === false && (
           <button
             onClick={() => setShowRatingModal(true)}
-            className="mb-4 w-fit rounded bg-yellow-400 px-4 py-2 text-sm font-medium text-white hover:bg-yellow-500"
+            className="mb-3 w-fit rounded bg-yellow-400 px-3 py-1.5 text-sm font-medium text-white hover:bg-yellow-500"
           >
             Give Rating
           </button>
         )}
 
-        <div className="flex-grow overflow-y-auto rounded-lg border border-gray-300 bg-gray-50 p-4">
+        <div className="flex-grow overflow-y-auto rounded-lg border border-gray-300 bg-gray-50 p-3">
           {messages.length === 0 || isLoadingProfile ? (
             <p className="text-center text-gray-500">No messages yet.</p>
           ) : (
@@ -232,12 +232,12 @@ export default function ChatRoom() {
               return (
                 <div
                   key={index}
-                  className={`mb-3 flex ${
+                  className={`mb-2 flex ${
                     isOwn ? "justify-end" : "justify-start"
                   }`}
                 >
                   <div
-                    className={`max-w-[70%] break-words rounded-lg px-4 py-2 ${
+                    className={`max-w-[70%] break-words rounded-lg px-3 py-2 ${
                       isOwn
                         ? "rounded-br-none bg-green-200 text-green-900"
                         : "rounded-bl-none bg-white text-gray-900"
@@ -247,14 +247,14 @@ export default function ChatRoom() {
                       <img
                         src={avatar || "/default-avatar.png"}
                         alt={`${name}'s avatar`}
-                        className="h-5 w-5 rounded-full object-cover"
+                        className="h-4 w-4 rounded-full object-cover"
                       />
                       <span className="text-xs font-medium text-gray-700">
                         {name}
                       </span>
                     </div>
 
-                    <p>{msg.content}</p>
+                    <p className="text-sm">{msg.content}</p>
                     <span className="mt-1 block text-right text-xs text-gray-500">
                       {formatDate(msg.timestamp)}
                     </span>
@@ -268,7 +268,7 @@ export default function ChatRoom() {
 
         <form
           onSubmit={handleSendMessage}
-          className="mt-4 flex gap-2"
+          className="mt-3 flex gap-2"
           autoComplete="off"
         >
           <input
@@ -276,25 +276,25 @@ export default function ChatRoom() {
             placeholder="Type your message..."
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
-            className="flex-grow rounded border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-grow rounded border border-gray-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
             type="submit"
             disabled={!newMessage.trim()}
-            className="rounded bg-blue-600 px-5 py-2 text-white transition hover:bg-blue-700 disabled:opacity-50"
+            className="rounded bg-blue-600 px-4 py-1.5 text-sm text-white transition hover:bg-blue-700 disabled:opacity-50"
           >
             Send
           </button>
         </form>
       </div>
+
       {showRatingModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-          <div className="w-[90%] max-w-md rounded-lg bg-white p-6 shadow-lg">
-            <h3 className="mb-4 text-xl font-semibold">Rate {otherFullName}</h3>
+          <div className="w-[90%] max-w-md rounded-lg bg-white p-5 shadow-lg">
+            <h3 className="mb-3 text-lg font-semibold">Rate {otherFullName}</h3>
 
-            {/* StarRating */}
             <StarRating
-              size={32}
+              size={28}
               onSetRating={setRatingValue}
               defaultRating={ratingValue}
             />
@@ -302,20 +302,20 @@ export default function ChatRoom() {
             <textarea
               rows="4"
               placeholder="Write a short comment..."
-              className="mb-4 w-full resize-none rounded border border-gray-300 p-2 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              className="mb-3 w-full resize-none rounded border border-gray-300 p-2 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
               onChange={(e) => setComment(e.target.value)}
             />
 
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => setShowRatingModal(false)}
-                className="rounded bg-gray-200 px-4 py-2 text-sm hover:bg-gray-300"
+                className="rounded bg-gray-200 px-3 py-1.5 text-sm hover:bg-gray-300"
               >
                 Cancel
               </button>
               <button
                 onClick={handleSubmitRating}
-                className="rounded bg-yellow-400 px-4 py-2 text-sm text-white hover:bg-yellow-500"
+                className="rounded bg-yellow-400 px-3 py-1.5 text-sm text-white hover:bg-yellow-500"
               >
                 Submit
               </button>

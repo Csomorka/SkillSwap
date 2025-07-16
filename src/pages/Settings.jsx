@@ -110,18 +110,18 @@ function Settings() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-100 p-8">
+    <div className="min-h-screen bg-stone-100 px-12 py-16">
       <div className="mx-auto max-w-3xl">
-        <h1 className="mb-8 text-3xl font-bold text-stone-800">
+        <h1 className="mb-6 text-2xl font-bold text-stone-800">
           Account Settings
         </h1>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5">
           {/* Profile Section */}
-          <div className="rounded-xl bg-white p-6 shadow-sm">
-            <h2 className="mb-4 text-xl font-semibold">Profile Information</h2>
+          <div className="rounded-xl bg-white p-5 shadow-sm">
+            <h2 className="mb-3 text-lg font-semibold">Profile Information</h2>
 
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-3 md:grid-cols-2">
               <div>
                 <label className="mb-1 block text-sm font-medium text-stone-600">
                   Full Name
@@ -131,7 +131,7 @@ function Settings() {
                   name="fullName"
                   defaultValue={fullName}
                   onChange={handleChange}
-                  className="w-full rounded-lg border border-stone-300 p-2.5 focus:border-amber-500 focus:ring-amber-500"
+                  className="w-full rounded-lg border border-stone-300 p-2 focus:border-amber-500 focus:ring-amber-500"
                 />
               </div>
 
@@ -144,7 +144,7 @@ function Settings() {
                   defaultValue={bio}
                   onChange={handleChange}
                   rows={3}
-                  className="w-full rounded-lg border border-stone-300 p-2.5 focus:border-amber-500 focus:ring-amber-500"
+                  className="w-full rounded-lg border border-stone-300 p-2 focus:border-amber-500 focus:ring-amber-500"
                 />
               </div>
 
@@ -158,15 +158,15 @@ function Settings() {
                   defaultValue={skillsOffered}
                   onChange={handleChange}
                   placeholder="Separate skills with commas"
-                  className="w-full rounded-lg border border-stone-300 p-2.5 focus:border-amber-500 focus:ring-amber-500"
+                  className="w-full rounded-lg border border-stone-300 p-2 focus:border-amber-500 focus:ring-amber-500"
                 />
               </div>
             </div>
           </div>
 
           {/* Security Section */}
-          <div className="rounded-xl bg-white p-6 shadow-sm">
-            <h2 className="mb-4 text-xl font-semibold">Security</h2>
+          <div className="rounded-xl bg-white p-5 shadow-sm">
+            <h2 className="mb-3 text-lg font-semibold">Security</h2>
             <div>
               <label className="mb-1 block text-sm font-medium text-stone-600">
                 New Password
@@ -175,14 +175,14 @@ function Settings() {
                 type="password"
                 name="password"
                 onChange={handleChange}
-                className="w-full rounded-lg border border-stone-300 p-2.5 focus:border-amber-500 focus:ring-amber-500"
+                className="w-full rounded-lg border border-stone-300 p-2 focus:border-amber-500 focus:ring-amber-500"
               />
             </div>
           </div>
 
           {/* Avatar Section */}
-          <div className="rounded-xl bg-white p-6 shadow-sm">
-            <h2 className="mb-4 text-xl font-semibold">Profile Picture</h2>
+          <div className="rounded-xl bg-white p-5 shadow-sm">
+            <h2 className="mb-3 text-lg font-semibold">Profile Picture</h2>
             <div>
               <label className="mb-1 block text-sm font-medium text-stone-600">
                 Upload new avatar
@@ -200,7 +200,7 @@ function Settings() {
           <button
             type="submit"
             disabled={updateMutation.isLoading}
-            className="w-full rounded-lg bg-amber-600 px-5 py-3 text-center text-sm font-medium text-white hover:bg-amber-700 focus:outline-none focus:ring-4 focus:ring-amber-300 disabled:opacity-50 sm:w-auto"
+            className="w-full rounded-lg bg-amber-600 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-amber-700 focus:outline-none focus:ring-4 focus:ring-amber-300 disabled:opacity-50 sm:w-auto"
           >
             {updateMutation.isLoading ? "Saving..." : "Save Changes"}
           </button>
@@ -208,64 +208,106 @@ function Settings() {
       </div>
     </div>
   );
+
+  // return (
+  //   <div className="min-h-screen bg-stone-100 p-8">
+  //     <div className="mx-auto max-w-3xl">
+  //       <h1 className="mb-8 text-3xl font-bold text-stone-800">
+  //         Account Settings
+  //       </h1>
+
+  //       <form onSubmit={handleSubmit} className="space-y-6">
+  //         {/* Profile Section */}
+  //         <div className="rounded-xl bg-white p-6 shadow-sm">
+  //           <h2 className="mb-4 text-xl font-semibold">Profile Information</h2>
+
+  //           <div className="grid gap-4 md:grid-cols-2">
+  //             <div>
+  //               <label className="mb-1 block text-sm font-medium text-stone-600">
+  //                 Full Name
+  //               </label>
+  //               <input
+  //                 type="text"
+  //                 name="fullName"
+  //                 defaultValue={fullName}
+  //                 onChange={handleChange}
+  //                 className="w-full rounded-lg border border-stone-300 p-2.5 focus:border-amber-500 focus:ring-amber-500"
+  //               />
+  //             </div>
+
+  //             <div>
+  //               <label className="mb-1 block text-sm font-medium text-stone-600">
+  //                 Bio
+  //               </label>
+  //               <textarea
+  //                 name="bio"
+  //                 defaultValue={bio}
+  //                 onChange={handleChange}
+  //                 rows={3}
+  //                 className="w-full rounded-lg border border-stone-300 p-2.5 focus:border-amber-500 focus:ring-amber-500"
+  //               />
+  //             </div>
+
+  //             <div className="md:col-span-2">
+  //               <label className="mb-1 block text-sm font-medium text-stone-600">
+  //                 Skills Offered
+  //               </label>
+  //               <input
+  //                 type="text"
+  //                 name="skillsOffered"
+  //                 defaultValue={skillsOffered}
+  //                 onChange={handleChange}
+  //                 placeholder="Separate skills with commas"
+  //                 className="w-full rounded-lg border border-stone-300 p-2.5 focus:border-amber-500 focus:ring-amber-500"
+  //               />
+  //             </div>
+  //           </div>
+  //         </div>
+
+  //         {/* Security Section */}
+  //         <div className="rounded-xl bg-white p-6 shadow-sm">
+  //           <h2 className="mb-4 text-xl font-semibold">Security</h2>
+  //           <div>
+  //             <label className="mb-1 block text-sm font-medium text-stone-600">
+  //               New Password
+  //             </label>
+  //             <input
+  //               type="password"
+  //               name="password"
+  //               onChange={handleChange}
+  //               className="w-full rounded-lg border border-stone-300 p-2.5 focus:border-amber-500 focus:ring-amber-500"
+  //             />
+  //           </div>
+  //         </div>
+
+  //         {/* Avatar Section */}
+  //         <div className="rounded-xl bg-white p-6 shadow-sm">
+  //           <h2 className="mb-4 text-xl font-semibold">Profile Picture</h2>
+  //           <div>
+  //             <label className="mb-1 block text-sm font-medium text-stone-600">
+  //               Upload new avatar
+  //             </label>
+  //             <input
+  //               type="file"
+  //               name="avatarUrl"
+  //               accept="image/*"
+  //               onChange={handleChange}
+  //               className="block w-full text-sm text-stone-500 file:mr-4 file:rounded file:border-0 file:bg-amber-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-amber-700 hover:file:bg-amber-100"
+  //             />
+  //           </div>
+  //         </div>
+
+  //         <button
+  //           type="submit"
+  //           disabled={updateMutation.isLoading}
+  //           className="w-full rounded-lg bg-amber-600 px-5 py-3 text-center text-sm font-medium text-white hover:bg-amber-700 focus:outline-none focus:ring-4 focus:ring-amber-300 disabled:opacity-50 sm:w-auto"
+  //         >
+  //           {updateMutation.isLoading ? "Saving..." : "Save Changes"}
+  //         </button>
+  //       </form>
+  //     </div>
+  //   </div>
+  // );
 }
-
-//   return (
-//     <div className="h-screen bg-stone-100 p-[4rem_4.8rem_6.4rem]">
-//       <form
-//         className="grid grid-cols-2 grid-rows-3 gap-2"
-//         onSubmit={handleSubmit}
-//       >
-//         <label>Change name</label>
-
-//         <input
-//           type="text"
-//           name="fullName"
-//           placeholder="your name"
-//           defaultValue={fullName}
-//           onChange={handleChange}
-//         />
-
-//         <label>Change password</label>
-//         <input
-//           type="password"
-//           name="password"
-//           placeholder=" new password"
-//           onChange={handleChange}
-//         />
-
-//         <label>Change Bio</label>
-//         <input
-//           type="text"
-//           name="bio"
-//           placeholder="your bio"
-//           defaultValue={bio}
-//           onChange={handleChange}
-//         />
-
-//         <label>Your offered skills</label>
-//         <input
-//           type="text"
-//           name="skillsOffered"
-//           placeholder="Type your skills"
-//           defaultValue={skillsOffered}
-//           onChange={handleChange}
-//         />
-
-//         <label>Upload profile picture</label>
-//         <input
-//           name="avatarUrl"
-//           accept="image/*"
-//           type="file"
-//           onChange={handleChange}
-//         />
-
-//         <button type="submit" disabled={updateMutation.isLoading}>
-//           {updateMutation.isLoading ? "Updating..." : "Update Settings"}
-//         </button>
-//       </form>
-//     </div>
-//   );
-// }
 
 export default Settings;

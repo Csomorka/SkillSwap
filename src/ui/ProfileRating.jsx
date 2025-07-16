@@ -8,24 +8,24 @@ export default function ProfileRating({ rating }) {
   if (isLoading) return <Loader />;
 
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
-      <div className="flex items-start gap-4">
+    <div className="rounded-xl border border-gray-200 bg-white p-3 shadow-sm">
+      <div className="flex items-start gap-3">
         {/* Avatar */}
         <img
           src={profile.avatarUrl}
           alt={profile.fullName}
-          className="h-12 w-12 rounded-full border object-cover object-top"
+          className="h-10 w-10 rounded-full border object-cover object-top"
         />
 
         <div>
           {/* Name + Stars */}
-          <div className="mb-1 flex items-center gap-2">
-            <span className="font-semibold text-gray-800">
+          <div className="mb-0.5 flex items-center gap-1.5">
+            <span className="font-medium text-gray-800">
               {profile.fullName}
             </span>
             <div className="flex items-center text-yellow-500">
               {Array.from({ length: rating.rating }, (_, i) => (
-                <HiMiniStar key={i} size={16} fill="currentColor" />
+                <HiMiniStar key={i} size={14} fill="currentColor" />
               ))}
             </div>
           </div>

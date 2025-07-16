@@ -62,13 +62,13 @@ function Profile({ userId }) {
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8">
+    <div className="mx-auto max-w-6xl px-2 py-4 lg:px-6 lg:py-12">
       {/* Profile Header */}
-      <div className="flex flex-col items-center gap-6 md:flex-row md:items-start">
+      <div className="flex flex-col items-center gap-5 md:flex-row md:items-start">
         {/* Avatar */}
         <div className="relative">
           <img
-            className="h-40 w-40 rounded-full border-4 border-amber-400 object-cover object-top shadow-lg"
+            className="h-32 w-32 rounded-full border-4 border-amber-400 object-cover object-top shadow-lg"
             src={avatarUrl}
             alt={fullName}
           />
@@ -77,12 +77,12 @@ function Profile({ userId }) {
         {/* Name, Bio, Rating */}
         <div className="flex-1 text-center md:text-left">
           <div className="flex flex-col items-center md:items-start">
-            <h1 className="text-3xl font-bold text-gray-800">{fullName}</h1>
+            <h1 className="text-2xl font-bold text-gray-800">{fullName}</h1>
 
             {/* Average Rating */}
             {averageRating && (
-              <div className="mt-2 flex items-center text-lg text-yellow-500">
-                <HiMiniStar size={20} className="mr-1" />
+              <div className="mt-1.5 flex items-center text-base text-yellow-500">
+                <HiMiniStar size={18} className="mr-1" />
                 <span className="font-semibold">
                   {averageRating.toFixed(1)}
                 </span>
@@ -94,9 +94,9 @@ function Profile({ userId }) {
           </div>
 
           {/* Bio */}
-          <div className="mt-4 max-w-2xl rounded-lg bg-gray-50 p-4">
-            <h2 className="mb-2 text-lg font-semibold">About</h2>
-            <p className="text-gray-600">
+          <div className="mt-3 max-w-2xl rounded-lg bg-gray-50 p-3">
+            <h2 className="mb-1.5 text-base font-semibold">About</h2>
+            <p className="text-sm text-gray-600">
               {bio || "This user hasn't written a bio yet."}
             </p>
           </div>
@@ -104,7 +104,7 @@ function Profile({ userId }) {
 
         {/* Message Button */}
         {userId !== currentUser.id && (
-          <div className="mt-4 md:mt-0">
+          <div className="mt-3 md:mt-0">
             <MessageButton
               handleMessage={() => handleSendMessage(currentUser.id, userId)}
             />
@@ -113,33 +113,32 @@ function Profile({ userId }) {
       </div>
 
       {/* Main Content */}
-      <div className="mt-12 grid gap-8 md:grid-cols-3">
+      <div className="mt-10 grid gap-6 md:grid-cols-3">
         {/* Skills Section */}
         <div className="md:col-span-1">
-          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-            <h2 className="mb-4 text-xl font-semibold">Skills Offered</h2>
-            <div className="flex flex-wrap gap-2">
+          <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+            <h2 className="mb-3 text-lg font-semibold">Skills Offered</h2>
+            <div className="flex flex-wrap gap-1.5">
               {skillsOffered?.length > 0 ? (
                 skillsOffered.map((skill) => (
                   <SkillItem key={skill}>{skill}</SkillItem>
                 ))
               ) : (
-                <p className="text-gray-500">No skills listed</p>
+                <p className="text-sm text-gray-500">No skills listed</p>
               )}
             </div>
           </div>
         </div>
 
         {/* Posts Section */}
-        <div className="space-y-8 md:col-span-2">
-          {/* Posts */}
-          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-            <h2 className="mb-4 text-xl font-semibold">
+        <div className="space-y-6 md:col-span-2">
+          <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+            <h2 className="mb-3 text-lg font-semibold">
               {usersPosts.length > 0
                 ? `Posts (${usersPosts.length})`
                 : "No Posts Yet"}
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {usersPosts.map((post) => (
                 <PostItem post={post} key={post.id} />
               ))}
@@ -148,9 +147,9 @@ function Profile({ userId }) {
 
           {/* Reviews Section */}
           {ratings && ratings.length > 0 && (
-            <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-              <h2 className="mb-4 text-xl font-semibold">Reviews</h2>
-              <div className="space-y-4">
+            <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+              <h2 className="mb-3 text-lg font-semibold">Reviews</h2>
+              <div className="space-y-3">
                 {ratings.map((rating) => (
                   <ProfileRating key={rating.id} rating={rating} />
                 ))}

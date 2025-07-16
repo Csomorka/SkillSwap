@@ -19,65 +19,61 @@ function NavElements({ onClick }) {
   }
 
   return (
-    <ul className="flex flex-col gap-2">
+    <ul className="flex flex-col gap-1.5">
       <li>
         <NavLink
           to="/feed"
-          className="group flex items-center gap-5 p-4 text-xl text-stone-500 hover:bg-stone-100 [&.active]:bg-stone-100 [&.active]:text-amber-600"
+          className="group flex items-center gap-4 px-3 py-2 text-lg text-stone-500 lg:hover:bg-stone-100 [&.active]:bg-amber-100 [&.active]:text-amber-600 lg:[&.active]:bg-stone-100 lg:[&.active]:text-amber-600"
           onClick={onClick}
         >
-          <HiOutlineHome className="h-7 w-7 transition-colors group-hover:text-amber-600 group-[.active]:text-amber-600" />
-          <span className="font-semibold transition-colors group-hover:text-amber-600 group-[.active]:text-amber-600">
+          <HiOutlineHome className="h-6 w-6 transition-colors group-hover:text-amber-600 lg:group-hover:text-amber-600" />
+          <span className="font-medium transition-colors group-hover:text-amber-600 lg:group-hover:text-amber-600">
             Home
           </span>
         </NavLink>
       </li>
+
       <li>
         <NavLink
           to="/messages"
-          className="group flex items-center gap-5 p-4 text-xl text-stone-500 hover:bg-stone-100 [&.active]:bg-stone-100 [&.active]:text-amber-600"
+          className="group flex items-center gap-4 px-3 py-2 text-lg text-stone-500 lg:hover:bg-stone-100 [&.active]:bg-amber-100 [&.active]:text-amber-600 lg:[&.active]:bg-stone-100 lg:[&.active]:text-amber-600"
           onClick={onClick}
         >
-          <HiOutlineEnvelope className="h-7 w-7 transition-colors group-hover:text-amber-600 group-[.active]:text-amber-600" />
-          <span className="font-semibold transition-colors group-hover:text-amber-600 group-[.active]:text-amber-600">
-            Messages
-          </span>
+          <HiOutlineEnvelope className="h-6 w-6 transition-colors" />
+          <span className="font-medium">Messages</span>
         </NavLink>
       </li>
+
       <li>
         <NavLink
           to="/account"
-          className="group flex items-center gap-5 p-4 text-xl text-stone-500 hover:bg-stone-100 [&.active]:bg-stone-100 [&.active]:text-amber-600"
+          className="group flex items-center gap-4 px-3 py-2 text-lg text-stone-500 lg:hover:bg-stone-100 [&.active]:bg-amber-100 [&.active]:text-amber-600 lg:[&.active]:bg-stone-100 lg:[&.active]:text-amber-600"
           onClick={onClick}
         >
-          <HiOutlineUser className="h-7 w-7 transition-colors group-hover:text-amber-600 group-[.active]:text-amber-600" />
-          <span className="font-semibold transition-colors group-hover:text-amber-600 group-[.active]:text-amber-600">
-            My Account
-          </span>
+          <HiOutlineUser className="h-6 w-6 transition-colors" />
+          <span className="font-medium">My Account</span>
         </NavLink>
       </li>
+
       <li>
         <NavLink
           to="/settings"
-          className="group flex items-center gap-5 p-4 text-xl text-stone-500 hover:bg-stone-100 [&.active]:bg-stone-100 [&.active]:text-amber-600"
+          className="group flex items-center gap-4 px-3 py-2 text-lg text-stone-500 lg:hover:bg-stone-100 [&.active]:bg-amber-100 [&.active]:text-amber-600 lg:[&.active]:bg-stone-100 lg:[&.active]:text-amber-600"
           onClick={onClick}
         >
-          <HiOutlineCog6Tooth className="h-7 w-7 transition-colors group-hover:text-amber-600 group-[.active]:text-amber-600" />
-          <span className="font-semibold transition-colors group-hover:text-amber-600 group-[.active]:text-amber-600">
-            Settings
-          </span>
+          <HiOutlineCog6Tooth className="h-6 w-6 transition-colors" />
+          <span className="font-medium">Settings</span>
         </NavLink>
       </li>
+
       <li>
         <NavLink
           to="/login"
-          className="group flex items-center gap-5 p-4 text-xl text-stone-500 hover:bg-stone-100 [&.active]:bg-stone-100 [&.active]:text-amber-600"
+          className="group flex items-center gap-4 px-3 py-2 text-lg text-stone-500 lg:hover:bg-stone-100 [&.active]:bg-amber-100 [&.active]:text-amber-600 lg:[&.active]:bg-stone-100 lg:[&.active]:text-amber-600"
           onClick={handleLogout}
         >
-          <HiArrowRightStartOnRectangle className="h-7 w-7 transition-colors group-hover:text-amber-600 group-[.active]:text-amber-600" />
-          <span className="font-semibold transition-colors group-hover:text-amber-600 group-[.active]:text-amber-600">
-            Log Out
-          </span>
+          <HiArrowRightStartOnRectangle className="h-6 w-6 transition-colors" />
+          <span className="font-medium">Log Out</span>
         </NavLink>
       </li>
     </ul>

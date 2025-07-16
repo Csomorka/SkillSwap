@@ -5,7 +5,7 @@ function Account() {
   const { user } = useAuth();
 
   return (
-    <div className="h-screen bg-stone-100 p-[4rem_4.8rem_6.4rem]">
+    <div className="h-screen bg-stone-100 px-2 py-4 lg:px-16 lg:py-20">
       <Profile userId={user.id} />
     </div>
   );

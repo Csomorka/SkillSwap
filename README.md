@@ -5,6 +5,8 @@ For example, someone might offer violin lessons in return for help with web deve
 
 This app enables users to post skill offerings or requests, connect through real-time chat, and manage their profiles.
 
+LIVE DEMO: www.skillswap-csomor.vercel.app
+
 ---
 
 ## ✨ Features
@@ -14,7 +16,7 @@ This app enables users to post skill offerings or requests, connect through real
 - 💬 Real-time 1-on-1 messaging with Supabase subscriptions
 - 🧑‍💻 View and message other users' profiles
 - ⚙️ Update your own profile: bio, skills offered, profile picture, and password
-- 🌟 Ratings and reviews between users (coming soon)
+- 🌟 Ratings and reviews between users
 
 ---
 
@@ -23,7 +25,7 @@ This app enables users to post skill offerings or requests, connect through real
 - **Frontend:** React, Vite, Tailwind CSS
 - **State Management:** Context API, React Query
 - **Backend as a Service:** Supabase (auth, database, real-time)
-- **Other Tools:** react-hot-toast (planned), Git
+- **Other Tools:** react-hot-toast , Git
 
 ---
 
@@ -33,7 +35,6 @@ This project is functional but still in development:
 
 - 🔧 **Styling** is in progress (UI/UX not final)
 - ⚠️ **Error handling** is basic — alerts will be replaced with `react-hot-toast`
-- 🌟 **Ratings** system is planned but not yet implemented
 
 ---
 

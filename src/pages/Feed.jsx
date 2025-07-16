@@ -28,20 +28,22 @@ function Feed() {
   const numPosts = otherUsersPosts.length;
 
   return (
-    <div className="h-screen bg-stone-100 p-[1rem_4.8rem_6.4rem]">
-      <div className="flex justify-between pb-8">
-        <p className="text-stone-400">{numPosts} posts found</p>
+    <div className="h-screen bg-stone-100 px-4 py-2 lg:px-16 lg:py-12">
+      <div className="flex justify-between pb-6">
+        <p className="text-sm text-stone-400">{numPosts} posts found</p>
         {!isOpen && (
           <button
-            className="rounded-3xl bg-amber-300 px-4 py-2 text-stone-700 hover:bg-amber-400"
+            className="rounded-3xl bg-amber-300 px-3 py-1.5 text-sm text-stone-700 hover:bg-amber-400"
             onClick={() => setIsOpen((prev) => !prev)}
           >
             Create post
           </button>
         )}
       </div>
+
       {isOpen && <CreatePost togglePostForm={setIsOpen} />}
-      <div className="grid gap-8 md:grid-cols-2">
+
+      <div className="grid gap-6 md:grid-cols-2">
         {otherUsersPosts.map((post) => (
           <PostItem post={post} key={post.id} />
         ))}
