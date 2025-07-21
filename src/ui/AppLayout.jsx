@@ -13,10 +13,10 @@ function AppLayout() {
 
   return (
     <>
-      <div className="relative h-screen lg:grid lg:grid-cols-[1.5fr_4fr] lg:grid-rows-[auto_1fr]">
+      <div className="relative min-h-screen lg:grid lg:h-screen lg:grid-cols-[1.5fr_4fr] lg:grid-rows-[auto_1fr]">
         <Header toggleNav={toggleNav} />
         <SideBar />
-        <main className="overflow-x-scroll bg-stone-100 md:px-4 md:py-4">
+        <main className="overflow-x-auto bg-stone-100 md:px-4 md:py-4 lg:overflow-x-scroll">
           <Outlet />
         </main>
       </div>
@@ -24,20 +24,6 @@ function AppLayout() {
       {isOpen && <MobileNav toggleNav={toggleNav} />}
     </>
   );
-
-  // return (
-  //   <>
-  //     <div className="relative h-screen lg:grid lg:grid-cols-[1.5fr_4fr] lg:grid-rows-[auto_1fr]">
-  //       <Header toggleNav={toggleNav} />
-  //       <SideBar />
-  //       <main className="overflow-x-scroll bg-stone-100">
-  //         <Outlet />
-  //       </main>
-  //     </div>
-
-  //     {isOpen && <MobileNav toggleNav={toggleNav} />}
-  //   </>
-  // );
 }
 
 export default AppLayout;

@@ -3,15 +3,18 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import supabase from "../services/supabase";
+import Loader from "../ui/Loader";
 
 function MessageInbox() {
   const [conversations, setConversations] = useState([]);
   const [partners, setPartners] = useState({});
+  const [isLoading, setIsloading] = useState(false);
   const navigate = useNavigate();
   const { user } = useAuth();
 
   useEffect(() => {
     if (!user) return;
+    setIsloading(true);
 
     const fetchConversations = async () => {
       const { data, error } = await supabase
@@ -46,6 +49,7 @@ function MessageInbox() {
       });
 
       setPartners(profileMap);
+      setIsloading(false);
     };
 
     fetchConversations();
@@ -55,11 +59,13 @@ function MessageInbox() {
     navigate(`/messages/${conversationId}`);
   };
 
-  const isConversation = conversations.length > 0;
+  const isConversation = conversations.length === 0;
 
   return (
     <div className="h-screen bg-stone-100 px-16 py-20">
-      {!isConversation ? (
+      {isLoading ? (
+        <Loader />
+      ) : isConversation ? (
         <p className="text-lg text-stone-700">
           There is no conversation yet...☹️ Start your first conversation by
           messaging someone!
