@@ -63,6 +63,16 @@ function CreatePost({ togglePostForm }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (
+      !postForm.title.trim() ||
+      !postForm.description.trim() ||
+      !postForm.skillsNeeded.trim()
+    ) {
+      toast.error("Please fill out all fields.");
+      return;
+    }
+
     createPost({
       ...postForm,
       skillsNeeded: stringToArray(postForm.skillsNeeded),

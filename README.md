@@ -5,9 +5,7 @@ For example, someone might offer violin lessons in return for help with web deve
 
 This app enables users to post skill offerings or requests, connect through real-time chat, and manage their profiles.
 
-Login credintials for DEMO App:
-email: example@example.com
-password: example
+You can Sign Up with invalid email.
 
 ---
 

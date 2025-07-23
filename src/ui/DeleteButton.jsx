@@ -4,6 +4,7 @@ function DeleteButton({ onDelete, children, isDeletingPost }) {
       disabled={isDeletingPost}
       className="text-stone-400 hover:text-amber-600"
       onClick={onDelete}
+      title="Delete"
     >
       {children}
     </button>

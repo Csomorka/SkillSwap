@@ -10,6 +10,20 @@ export async function createPost(post) {
   return data;
 }
 
+export async function updatePost({ field, value, postId }) {
+  const { data, error } = await supabase
+    .from("posts")
+    .update({ [field]: value })
+    .eq("id", postId)
+    .select();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Post could not be created");
+  }
+  return data;
+}
+
 export async function getPosts() {
   const { data: posts, error } = await supabase
     .from("posts")

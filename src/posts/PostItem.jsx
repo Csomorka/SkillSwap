@@ -1,15 +1,21 @@
-import { formatDate } from "../helpers";
 import { useAuth } from "../contexts/AuthContext";
-import { HiOutlineTrash } from "react-icons/hi2";
-import DeleteButton from "../ui/DeleteButton";
+import { useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { formatDate } from "../helpers";
 import { useDeletePost } from "./useDeletePost";
-
 import { useGetProfile } from "../profiles/useGetProfile";
+
+import { HiOutlineTrash } from "react-icons/hi2";
+import { HiOutlinePencilSquare } from "react-icons/hi2";
+import { HiOutlineX } from "react-icons/hi";
+
+import DeleteButton from "../ui/DeleteButton";
 import SkillItem from "../ui/SkillItem";
+import PostEditForm from "./PostEditForm";
+import { useNavigate } from "react-router-dom";
 
 function PostItem({ post }) {
+  const [isEditing, setIsEditing] = useState(false);
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -51,76 +57,48 @@ function PostItem({ post }) {
         </div>
 
         {isAuthor && (
-          <DeleteButton
-            isDeletingPost={isDeletingPost}
-            onDelete={() => deletePost(postId)}
-          >
-            <HiOutlineTrash className="h-4 w-4" />
-          </DeleteButton>
+          <div className="flex gap-2">
+            <button
+              className="text-stone-400 hover:text-amber-600"
+              title="Edit post"
+              onClick={() => setIsEditing((prev) => !prev)}
+            >
+              {isEditing ? (
+                <HiOutlineX className="h-4 w-4" />
+              ) : (
+                <HiOutlinePencilSquare className="h-4 w-4" />
+              )}
+            </button>
+            <DeleteButton
+              isDeletingPost={isDeletingPost}
+              onDelete={() => deletePost(postId)}
+            >
+              <HiOutlineTrash className="h-4 w-4" />
+            </DeleteButton>
+          </div>
         )}
       </div>
 
       <div className="space-y-3">
-        <h2 className="text-lg font-bold text-stone-900">{title}</h2>
-        <p className="text-sm text-stone-700">{description}</p>
-
-        {skillsNeeded?.length > 0 && (
-          <div className="flex flex-wrap gap-1.5">
-            {JSON.parse(skillsNeeded)?.map((skill) => (
-              <SkillItem key={skill}>{skill}</SkillItem>
-            ))}
-          </div>
+        {!isEditing ? (
+          <>
+            {" "}
+            <h2 className="text-lg font-bold text-stone-900">{title}</h2>
+            <p className="text-sm text-stone-700">{description}</p>
+            {skillsNeeded?.length > 0 && (
+              <div className="flex flex-wrap gap-1.5">
+                {JSON.parse(skillsNeeded)?.map((skill) => (
+                  <SkillItem key={skill}>{skill}</SkillItem>
+                ))}
+              </div>
+            )}
+          </>
+        ) : (
+          <PostEditForm post={post} />
         )}
       </div>
     </div>
   );
-
-  // return (
-  //   <div className="rounded-xl border border-stone-200 bg-white p-6 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:border-amber-100 hover:shadow-lg">
-  //     <div className="mb-4 flex items-start justify-between">
-  //       <div
-  //         onClick={() => {
-  //           if (!isAuthor) navigate(`/profile/${user_id}`);
-  //         }}
-  //         className="group flex cursor-pointer items-center gap-3"
-  //       >
-  //         <img
-  //           className="h-10 w-10 rounded-full object-cover object-top"
-  //           src={profile.avatarUrl}
-  //           alt={`${profile.fullName}'s profile`}
-  //         />
-  //         <div>
-  //           <h5 className="font-medium text-stone-800 group-hover:text-amber-600">
-  //             {profile.fullName}
-  //           </h5>
-  //           <p className="text-xs text-stone-500">{formatDate(created_at)}</p>
-  //         </div>
-  //       </div>
-
-  //       {isAuthor && (
-  //         <DeleteButton
-  //           isDeletingPost={isDeletingPost}
-  //           onDelete={() => deletePost(postId)}
-  //         >
-  //           <HiOutlineTrash className="h-5 w-5" />
-  //         </DeleteButton>
-  //       )}
-  //     </div>
-
-  //     <div className="space-y-4">
-  //       <h2 className="text-xl font-bold text-stone-900">{title}</h2>
-  //       <p className="text-stone-700">{description}</p>
-
-  //       {skillsNeeded?.length > 0 && (
-  //         <div className="flex flex-wrap gap-2">
-  //           {JSON.parse(skillsNeeded)?.map((skill) => (
-  //             <SkillItem key={skill}>{skill}</SkillItem>
-  //           ))}
-  //         </div>
-  //       )}
-  //     </div>
-  //   </div>
-  // );
 }
 
 export default PostItem;
