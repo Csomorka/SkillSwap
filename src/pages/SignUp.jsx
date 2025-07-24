@@ -49,50 +49,123 @@ function SignUp() {
   }
 
   return (
-    <div className="mx-auto max-w-md p-6">
-      <h2 className="mb-4 text-xl font-bold">Sign up</h2>
-      <form onSubmit={handleSignUp} className="space-y-4">
-        <input
-          type="text"
-          placeholder="Full name"
-          className="w-full rounded-full border p-2"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full rounded-full border p-2"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full rounded-full border p-2"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        {errorMsg && <p className="text-sm text-red-500">{errorMsg}</p>}
-        <button
-          type="submit"
-          className="w-full rounded bg-teal-600 py-2 text-white"
-          disabled={loading}
-        >
-          {loading ? "Creating account..." : "Sign up"}
-        </button>
-        <p className="mt-2 text-sm">
-          Already have an account?{" "}
-          <Link to="/login" className="text-blue-500">
-            Log in
-          </Link>
-        </p>
-      </form>
+    <div className="min-h-screen bg-white px-4 pt-4 sm:pt-12">
+      <div className="mx-auto w-full max-w-md">
+        {/* Big logo, no top spacing */}
+        <div className="flex flex-col items-center">
+          <img
+            src="/SkillSwapLogo.png"
+            alt="Logo"
+            className="h-36 w-36 object-contain"
+          />
+          <h1 className="mt-4 text-2xl font-bold text-gray-800 sm:text-3xl">
+            Join SkillSwap
+          </h1>
+          <p className="text-sm text-gray-500">Sign up to get started</p>
+        </div>
+
+        {/* Form card */}
+        <div className="mt-6 rounded-xl border border-gray-200 p-6 shadow-sm sm:p-8">
+          <form onSubmit={handleSignUp} className="space-y-4">
+            <input
+              type="text"
+              placeholder="Full name"
+              className="w-full rounded-lg border border-gray-300 p-3 text-sm focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              required
+            />
+
+            <input
+              type="email"
+              placeholder="Email"
+              className="w-full rounded-lg border border-gray-300 p-3 text-sm focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+
+            <input
+              type="password"
+              placeholder="Password"
+              className="w-full rounded-lg border border-gray-300 p-3 text-sm focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+
+            {errorMsg && (
+              <p className="text-center text-sm text-red-500">{errorMsg}</p>
+            )}
+
+            <button
+              type="submit"
+              className="w-full rounded-lg bg-amber-400 py-3 text-sm font-medium text-white transition hover:bg-amber-500 disabled:opacity-60"
+              disabled={loading}
+            >
+              {loading ? "Creating account..." : "Sign up"}
+            </button>
+          </form>
+
+          <p className="pt-6 text-center text-sm text-gray-600">
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="font-medium text-amber-500 hover:underline"
+            >
+              Log in
+            </Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
+
+  // return (
+  //   <div className="mx-auto max-w-md p-6">
+  //     <h2 className="mb-4 text-xl font-bold">Sign up</h2>
+  //     <form onSubmit={handleSignUp} className="space-y-4">
+  //       <input
+  //         type="text"
+  //         placeholder="Full name"
+  //         className="w-full rounded-full border p-2"
+  //         value={fullName}
+  //         onChange={(e) => setFullName(e.target.value)}
+  //         required
+  //       />
+  //       <input
+  //         type="email"
+  //         placeholder="Email"
+  //         className="w-full rounded-full border p-2"
+  //         value={email}
+  //         onChange={(e) => setEmail(e.target.value)}
+  //         required
+  //       />
+  //       <input
+  //         type="password"
+  //         placeholder="Password"
+  //         className="w-full rounded-full border p-2"
+  //         value={password}
+  //         onChange={(e) => setPassword(e.target.value)}
+  //         required
+  //       />
+  //       {errorMsg && <p className="text-sm text-red-500">{errorMsg}</p>}
+  //       <button
+  //         type="submit"
+  //         className="w-full rounded bg-teal-600 py-2 text-white"
+  //         disabled={loading}
+  //       >
+  //         {loading ? "Creating account..." : "Sign up"}
+  //       </button>
+  //       <p className="mt-2 text-sm">
+  //         Already have an account?{" "}
+  //         <Link to="/login" className="text-blue-500">
+  //           Log in
+  //         </Link>
+  //       </p>
+  //     </form>
+  //   </div>
+  // );
 }
 
 export default SignUp;
