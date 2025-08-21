@@ -12,7 +12,7 @@ You can Sign Up with invalid email.
 ## ✨ Features
 
 - ✅ Full user authentication (sign up, log in, password update)
-- 📝 Create and delete skill exchange posts
+- 📝 Create, edit, sort and delete skill exchange posts
 - 💬 Real-time 1-on-1 messaging with Supabase subscriptions
 - 🧑‍💻 View and message other users' profiles
 - ⚙️ Update your own profile: bio, skills offered, profile picture, and password

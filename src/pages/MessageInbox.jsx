@@ -62,18 +62,26 @@ function MessageInbox() {
   const isConversation = conversations.length === 0;
 
   return (
-    <div className="h-screen bg-stone-100 px-16 py-20">
+    <div className="min-h-screen px-4 py-6 sm:px-8 lg:px-16 lg:py-12">
       {isLoading ? (
-        <Loader />
+        <div className="flex h-full items-center justify-center">
+          <Loader />
+        </div>
       ) : isConversation ? (
-        <p className="text-lg text-stone-700">
-          There is no conversation yet...☹️ Start your first conversation by
-          messaging someone!
-        </p>
+        <div className="flex h-full flex-col items-center justify-center text-center">
+          <p className="max-w-md text-base text-stone-600 sm:text-lg">
+            There are no conversations yet... ☹️ <br />
+            <span className="font-medium">
+              Start your first conversation by messaging someone!
+            </span>
+          </p>
+        </div>
       ) : (
-        <>
-          <h2 className="mb-3 text-lg font-bold">Your Chats</h2>
-          <ul className="space-y-3">
+        <div className="mx-auto w-full max-w-3xl">
+          <h2 className="mb-6 text-xl font-semibold text-stone-800 sm:text-2xl">
+            Your Chats
+          </h2>
+          <ul className="space-y-4">
             {conversations.map((c) => {
               const otherUserId =
                 c.user1_id === user.id ? c.user2_id : c.user1_id;
@@ -82,29 +90,83 @@ function MessageInbox() {
               return (
                 <li
                   key={c.id}
-                  className="flex cursor-pointer items-center gap-3 rounded-lg bg-white p-3 shadow hover:bg-stone-100"
+                  className="flex cursor-pointer items-center gap-4 rounded-2xl bg-white p-4 shadow-sm transition hover:bg-stone-50 hover:shadow-md"
                   onClick={() => openChat(c.id)}
                 >
                   {partner?.avatarUrl ? (
                     <img
                       src={partner.avatarUrl}
                       alt={partner.fullName}
-                      className="h-8 w-8 rounded-full object-cover"
+                      className="h-12 w-12 rounded-full object-cover"
                     />
                   ) : (
-                    <div className="h-8 w-8 rounded-full bg-stone-300" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-stone-300 text-stone-600">
+                      <span className="text-sm font-medium">
+                        {partner?.fullName?.charAt(0) || "?"}
+                      </span>
+                    </div>
                   )}
-                  <p className="text-sm">
-                    {partner?.fullName || "Unknown User"}
-                  </p>
+                  <div className="flex flex-col">
+                    <p className="text-sm font-medium text-stone-800 sm:text-base">
+                      {partner?.fullName || "Unknown User"}
+                    </p>
+                    <span className="text-xs text-stone-500">
+                      Click to open chat
+                    </span>
+                  </div>
                 </li>
               );
             })}
           </ul>
-        </>
+        </div>
       )}
     </div>
   );
+
+  // return (
+  //   <div className="h-screen bg-stone-100 px-16 py-20">
+  //     {isLoading ? (
+  //       <Loader />
+  //     ) : isConversation ? (
+  //       <p className="text-lg text-stone-700">
+  //         There is no conversation yet...☹️ Start your first conversation by
+  //         messaging someone!
+  //       </p>
+  //     ) : (
+  //       <>
+  //         <h2 className="mb-3 text-lg font-bold">Your Chats</h2>
+  //         <ul className="space-y-3">
+  //           {conversations.map((c) => {
+  //             const otherUserId =
+  //               c.user1_id === user.id ? c.user2_id : c.user1_id;
+  //             const partner = partners[otherUserId];
+
+  //             return (
+  //               <li
+  //                 key={c.id}
+  //                 className="flex cursor-pointer items-center gap-3 rounded-lg bg-white p-3 shadow hover:bg-stone-100"
+  //                 onClick={() => openChat(c.id)}
+  //               >
+  //                 {partner?.avatarUrl ? (
+  //                   <img
+  //                     src={partner.avatarUrl}
+  //                     alt={partner.fullName}
+  //                     className="h-8 w-8 rounded-full object-cover"
+  //                   />
+  //                 ) : (
+  //                   <div className="h-8 w-8 rounded-full bg-stone-300" />
+  //                 )}
+  //                 <p className="text-sm">
+  //                   {partner?.fullName || "Unknown User"}
+  //                 </p>
+  //               </li>
+  //             );
+  //           })}
+  //         </ul>
+  //       </>
+  //     )}
+  //   </div>
+  // );
 }
 
 export default MessageInbox;

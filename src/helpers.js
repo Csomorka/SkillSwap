@@ -5,6 +5,19 @@ export function stringToArray(str) {
     .filter((skill) => skill !== "");
 }
 
+export function normalizeSkills(skillsNeeded) {
+  if (Array.isArray(skillsNeeded)) return skillsNeeded;
+  if (typeof skillsNeeded === "string") {
+    try {
+      const parsed = JSON.parse(skillsNeeded);
+      return Array.isArray(parsed) ? parsed : [parsed];
+    } catch {
+      return stringToArray(skillsNeeded);
+    }
+  }
+  return [];
+}
+
 export function formatDate(dateString) {
   const safeDateString = dateString.endsWith("Z")
     ? dateString
